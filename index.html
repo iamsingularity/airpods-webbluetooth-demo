@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="text-gray-900 antialiased leading-tight">
+  <head>
+    <title>AirPods WebBluetooth Demo</title>
+    <meta charset="UTF-8" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-screen  m-5  bg-gray-100">
+    <div class="flex flex-col max-w-xl m-auto">
+      <h1 class="text-3xl">AirPods WebBluetooth Demo</h1>
+      <aside>
+        <a
+          class="text-blue-600"
+          href="https://codesandbox.io/s/airpods-webbluetooth-demo-c4jfh"
+          >Source</a
+        >
+      </aside>
+      <div class="my-4">
+        Example usage of the
+        <a
+          class="text-blue-600"
+          href="https://webbluetoothcg.github.io/web-bluetooth/scanning.html"
+          >WebBluetooth Scanning API</a
+        >; using <code class="tracking-tight">requestLEScan</code> to listen for
+        Apple AirPods Manufacture Data. <br /><br />
+        <strong
+          >If the AirPods are not paird with this device the battery percentage
+          is only report in 10% increments.</strong
+        >
+
+        <blockquote class="bg-green-200 p-4 mt-4 -mx-4">
+          <h4 class="font-bold">Note:</h4>
+          Scanning is still under development. You must be using Chrome 79+ with
+          the
+          <code class="tracking-tighter"
+            >chrome://flags/#enable-experimental-web-platform-features</code
+          >
+          flag enabled. <br />
+          Bluetooth scanning is currently (as of 25.04.2020) only supported on
+          Android and Mac see
+          <a
+            class="text-blue-500"
+            href="https://bugs.chromium.org/p/chromium/issues/detail?id=897312&desc=2"
+            >Chrome issue</a
+          >
+        </blockquote>
+      </div>
+      <div class="hidden" id="🎧">
+        <div
+          class="rounded  flex-grow border-solid border-4 border-gray-600 m-1"
+        >
+          <div class="px-6 py-2">
+            <div class="font-bold text-xl text-center mb-2">
+              <span id="name"></span>
+              <span class="invisible" id="airpods-connected">🔊</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-grow">
+          <div
+            class="rounded flex-grow border-solid border-4 border-gray-600 m-1"
+          >
+            <div class="px-6 py-2">
+              <div class="font-bold text-xl text-center mb-2">Left</div>
+              <div class="text-gray-700 text-base  text-center">
+                <div class="inline-block w-13">
+                  <span id="left-charging" class="invisible">⚡</span>
+                  <span id="left-battery">-</span>
+                  <span>%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="rounded  flex-grow border-solid border-4 border-gray-600 m-1"
+          >
+            <div class="px-6 py-2">
+              <div class="font-bold text-xl text-center mb-2">Right</div>
+              <div class="text-gray-700 text-base  text-center">
+                <div class="inline-block w-13">
+                  <span id="right-charging" class="invisible">⚡</span>
+                  <span id="right-battery">-</span>
+                  <span>%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded  flex-grow border-solid border-4 border-gray-600 m-1"
+        >
+          <div class="px-6 py-2">
+            <div class="font-bold text-xl text-center mb-2">Case</div>
+            <div class="text-gray-700 text-base  text-center">
+              <div class="inline-block w-13">
+                <span id="case-charging" class="invisible">⚡</span>
+                <span id="case-battery">-</span>
+                <span>%</span>
+                <span id="case-lidOpen"> (Open)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hidden font-bold text-center text-green-700" id="connecting">
+        Please allow the scaning request and open your AirPods next to this
+        device.
+      </div>
+      <div class="mb-3 hidden font-bold text-center text-red-700" id="error">
+        Filled by JS
+      </div>
+      <button
+        id="scan"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Start Scanning for AirPods
+      </button>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
